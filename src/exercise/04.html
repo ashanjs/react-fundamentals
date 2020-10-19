@@ -10,10 +10,11 @@
   <script type="text/babel">
 
     function Message({ subject, greeting }) {
-      return (<div
-        className="message">
-        {subject}, {greeting}
-      </div>)
+      return (
+        <div
+          className="message">
+          {subject}, {greeting}
+        </div>)
     }
 
     Message.propTypes = {
@@ -22,10 +23,10 @@
     }
 
     const element = (
-      <div >
-        <Message className="container" subject="Hello" greeting="World" />
-        <Message className="container" subject="Goodbye" greeting="World" />
-      </div>
+      <React.Fragment >
+        <Message subject="Hello" greeting="World" />
+        <Message subject="Goodbye" greeting="World" />
+      </React.Fragment>
     )
 
     ReactDOM.render(element, document.getElementById('root'))
