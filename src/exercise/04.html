@@ -8,14 +8,38 @@
   <script src="https://unpkg.com/@babel/standalone@7.9.3/babel.js"></script>
   <script type="text/babel">
 
-    function Message({ children }) {
-      return <div className="message">{children}</div>
+    const PropTypes = {
+      string(props, propName, componentName) {
+        if (typeof props[propName] !== 'string') {
+          console.log(props, propName, componentName)
+          return new Error(
+            `Hey, the component ${componentName} needs the prop ${propName} to be a string, but a ${typeof props[
+            propName
+            ]} was passed`)
+        }
+      },
     }
+
+
+    function Message({ subject, greeting }) {
+
+      return (<div
+        className="message">
+        {subject}, {greeting}
+      </div>)
+    }
+
+    Message.propTypes = {
+      subject: PropTypes.string,
+      greeting: PropTypes.string
+    }
+
+
 
     const element = (
       <div >
-        <Message className="container"> {'Hello World'} </Message >
-        <Message className="container"> {'Goodbye World'} </Message >
+        <Message className="container" subject="Hello" greeting="World" />
+        <Message className="container" subject="Goodbye" greeting="World" />
       </div>
     )
 
