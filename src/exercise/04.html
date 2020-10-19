@@ -8,16 +8,17 @@
   <script src="https://unpkg.com/@babel/standalone@7.9.3/babel.js"></script>
   <script type="text/babel">
 
-    function message(children) {
+    function message({ children }) {
       return <div className="message">{children}</div>
     }
 
     const element = (
       <div className="container">
-        {message('Hello World')}
-        {message('Goodbye World')}
+        {React.createElement(message, { children: 'Hello World' })}
+        {React.createElement(message, { children: 'Goodbye World' })}
       </div>
     )
+
     ReactDOM.render(element, document.getElementById('root'))
   </script>
 </body>
